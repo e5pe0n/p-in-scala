@@ -17,6 +17,13 @@ Metals creates template files for a scala project.
 
 # Run a Scala Program
 
+## Metals
+
+you can run a `main` function in a class or object with the feature of Metals extension.
+click `Run | Debug` on the name of class or object.  
+
+## SBT
+
 a package name does not include `src/main/scala`.  
 for instance, if you want to run `src/main/scala/Chapter2/Example1.scala`, you should exec `sbt "runMain Chapter2.Example1.scala"`.  
 
