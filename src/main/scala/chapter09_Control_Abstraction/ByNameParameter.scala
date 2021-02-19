@@ -26,6 +26,6 @@ object ByNameParameter {
     boolAssert(x / 0 == 0) // throw exception though assertionsEnabled = False
     byNameAssert(
       x / 0 == 0
-    ) // not throw exception because x / 0 == 0 is not evaluated immediately when passed to byNameAssert
+    ) // not throw exception because x / 0 == 0 is not evaluated immediately when passed to byNameAsser23I  QX46U
   }
 }
