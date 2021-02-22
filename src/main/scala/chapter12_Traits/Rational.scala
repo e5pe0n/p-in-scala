@@ -1,15 +1,17 @@
-package chapter06_Functional_Objects
+package chapter12_Traits
 
-class Rational(n: Int, d: Int) {
+class Rational(n: Int, d: Int) extends Ordered[Rational] {
   require(d != 0)
 
   private val g = gcd(n.abs, d.abs)
   val numer: Int = n / g
   val denom: Int = d / g
 
-  def this(n: Int) = this(n, 1) // auxiliary constructor
+  private def gcd(a: Int, b: Int): Int = if (b == 0) return a else gcd(b, a % b)
 
-  override def toString(): String = s"$numer/$denom"
+  def this(n: Int) = this(n, 1)
+
+  override def toString: String = s"$numer/$denom"
 
   def +(that: Rational): Rational =
     new Rational(
@@ -19,11 +21,10 @@ class Rational(n: Int, d: Int) {
 
   def +(i: Int): Rational = new Rational(numer + i * denom, denom)
 
-  def -(that: Rational): Rational =
-    new Rational(
-      numer * that.denom - that.numer * denom,
-      denom * that.denom
-    )
+  def -(that: Rational): Rational = new Rational(
+    numer * that.denom - that.numer * denom,
+    denom * that.denom
+  )
 
   def -(i: Int): Rational = new Rational(numer - i * denom, denom)
 
@@ -37,6 +38,6 @@ class Rational(n: Int, d: Int) {
 
   def /(i: Int): Rational = new Rational(numer, denom * i)
 
-  private def gcd(a: Int, b: Int): Int =
-    if (b == 0) a else gcd(b, a % b)
+  def compare(that: Rational): Int =
+    (this.numer * that.denom) - (that.numer * this.denom)
 }
