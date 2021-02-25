@@ -24,31 +24,17 @@ click `Run | Debug` on the name of class or object.
 
 ## SBT
 
-a package name does not include `src/main/scala`.  
-for instance, if you want to run `src/main/scala/Chapter2/Example1.scala`, you should exec `sbt "runMain Chapter2.Example1.scala"`.  
+run `sbt` command in **root of the project** for resolving classpath.  
 
 ```
-$ sbt "runMain <package>.<class>"
+$ sbt
+sbt:p-in-scala> run
 
-e.g.  anywhere in project
-$ sbt "runMain Chapter2.Example1.scala"
-```
+Multiple main classes detected. Select one to run:
+ [1] chapter12_Traits.MainIntQueue
+ [2] chapter13_Packages_and_Imports.printmenu.PrintMenu
+ [3] chapter14_Assertions_and_Tests.Calc
+ [4] chapter15_Case_Classes_and_Pattern_Matching.Express
 
-you can pass arguments by appending arguments.  
-for instance, suppose that you want to run the following program with a argument: `planet`.  
-
-```scala
-// src/main/scala/Chapter2/Example2.scala
-package Chapter2
-
-object Example2 {
-  def main(args: Array[String]): Unit = {
-    println("Hello, " + args(0) + "!")
-  }
-}
-```
-
-```
-$ sbt "runMain Chapter2.Example2 planet"
-"Hello, planet!"
+Enter number: 1
 ```
