@@ -11,3 +11,8 @@ class Cow extends Animal {
   type SuitableFood = Grass
   override def eat(food: Grass) = {}
 }
+
+class Pasture {
+  // structural subtyping
+  var animals: List[Animal { type SuitableFood = Grass }] = Nil
+}
