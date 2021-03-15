@@ -65,4 +65,17 @@ object ImplicitConversionsRunner extends App {
   println(maxListImpParm(List(1, 5, 10, 3))) // 10
   println(maxListImpParm(List(1.5, 5.2, 10.7, 3.14159))) // 10.7
   println(maxListImpParm(List("one", "two", "three"))) // two
+
+  // Context Bounds
+  // place `[T: Ordering]` to the method header because we want to use an implicit object within the function, such as implicitly[Ordering[T]].
+  def maxList[T: Ordering](elements: List[T]): T =
+    elements match {
+      case List()  => throw new IllegalArgumentException("empty list")
+      case List(x) => x
+      case x :: rest =>
+        val maxRest = maxList(rest)
+        if (implicitly[Ordering[T]].gt(x, maxRest)) x else maxRest
+    }
+
+  println("abc" == "abc".reverse.reverse)
 }
