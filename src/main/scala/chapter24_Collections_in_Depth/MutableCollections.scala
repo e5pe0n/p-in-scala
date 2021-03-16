@@ -71,4 +71,32 @@ object MutableCollections extends App {
   b += 1
   b += 3
   println(b) // BitSet(1, 3)
+
+  // Array
+  val a1 = Array(1, 2, 3)
+
+  val a2 = a1 map (_ * 3)
+  println(a2.mkString("Array(", ", ", ")")) // Array(3, 6, 9)
+
+  val a3 = a2 filter (_ % 2 != 0)
+  println(a3.mkString("Array(", ", ", ")")) // Array(3, 9)
+
+  println(a3.reverse.mkString("Array(", ", ", ")")) // Array(9, 3)
+
+  import scala.collection.Seq
+  val seq: Seq[Int] = a1
+  val a4: Array[Int] = seq.toArray // toArray makes new Array
+  println(a1 eq a4) // false
+
+  // Views
+  val v = Vector(1 to 10: _*)
+  println(v)
+
+  val v2 =
+    v map (_ + 1) map (_ * 2) // creates intermediate vectors, which is waste
+  println(v2) // Vector(4, 6, 8, 10, 12, 14, 16, 18, 20, 22)
+
+  val v3 = (v.view map (_ + 1) map (_ * 2))
+    .to(Vector) // not creates intermediate vectors
+  println(v3) // Vector(4, 6, 8, 10, 12, 14, 16, 18, 20, 22)
 }
