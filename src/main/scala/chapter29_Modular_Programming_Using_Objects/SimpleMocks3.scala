@@ -1,0 +1,3 @@
+package chapter29_Modular_Programming_Using_Objects
+
+object SimpleDatabase3 extends Database with SimpleFoods with SimpleRecipes
